@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dompetku_app/util/app_theme.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,7 +14,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Dompetku"),
-        backgroundColor: Color.fromARGB(255, 6, 154, 233),
+        backgroundColor: COLOR_PRIMARY,
       ),
       body: Container(
         child: Column(
