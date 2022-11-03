@@ -1,5 +1,14 @@
+import 'package:dompetku_app/widgets/akun_screen.dart';
+import 'package:dompetku_app/widgets/menu_box.dart';
+import 'package:dompetku_app/widgets/transaction_detail.dart';
+import 'package:dompetku_app/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:dompetku_app/util/app_theme.dart';
+
+import 'models/transaksi.dart';
+import 'widgets/home_screen.dart';
+
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,20 +18,45 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  int selectedPage = 0;
+
+  final _pageOptions = [
+    HomeScreen(),
+    DetailTransactionScreen(),
+    Akun_Screen()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dompetku"),
-        backgroundColor: COLOR_PRIMARY,
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Text("Ini Home"),
-            Text("Ini Home"),
-          ],
-          ),
+      body: _pageOptions[selectedPage],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.feed,
+              ),
+              label: 'Transaksi'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.account_circle,
+              ),
+              label: 'Akun'),
+        ],
+        selectedItemColor: const Color(0xFF3D538F),
+        unselectedItemColor: const Color(0xFF3D538F),
+        onTap: (index) {
+          setState(() {
+            selectedPage = index;
+          });
+          
+        },
       ),
     );
   }
